@@ -174,6 +174,17 @@ html.au-embed .phone,html.au-embed .phone *{visibility:visible}
 html.au-embed .phone{position:fixed;top:0;left:0;margin:0;z-index:99;box-shadow:none;max-width:none}
 html.appmode #ads,html.tourmode #ads{display:none!important}
 /* DUO:END */
+/* per-ad recommendations under each phone */
+.au-duo-recs{margin-top:10px;display:flex;flex-direction:column;gap:8px;text-align:left}
+.au-rec-v{margin:0 0 2px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--st-ink2)}
+.au-rec{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;width:100%;text-align:left;background:var(--st-ground);border:1px solid var(--st-hair);border-radius:14px;padding:11px 12px;font:inherit;color:inherit;cursor:pointer;transition:border-color .2s,background .2s}
+.au-rec:hover,.au-rec.on{border-color:var(--st-accent);background:var(--st-card)}
+.au-rec>i{grid-row:span 2;font-style:normal;font-size:11.5px;font-weight:700;color:#fff;background:var(--st-accent);border-radius:999px;padding:3px 7px;align-self:start}
+.au-rec>span{display:flex;flex-direction:column;gap:3px}
+.au-rec b{font-size:14px;line-height:1.3}
+.au-rec em{font-style:normal;font-size:13px;line-height:1.4;color:var(--st-ink2)}
+.au-rec mark{grid-column:2;justify-self:start;background:var(--st-mark);padding:1px 6px;border-radius:4px;font-size:13px;font-weight:700;color:inherit}
+.au-rec mark small{font-weight:500;margin-left:5px;color:var(--st-ink2)}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:64px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
@@ -587,7 +598,111 @@ html.tourmode .au-tour{display:block;position:fixed;inset:0;z-index:6;pointer-ev
 .ox-tdst small{font:500 11px var(--b-font)}
 .ox-adsq{object-fit:contain;object-position:50% 34%}
 .ox-tdb .ox-shots{grid-template-columns:repeat(3,46%);overflow:hidden;margin-right:-20px}
+/* three versions: shared bits */
+.ox-ttl{font:700 16px var(--b-font)}
+.ox-feat{list-style:none;margin:2px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
+.ox-feat li{position:relative;padding-left:22px;font:500 13.5px/1.35 var(--b-font);color:var(--b-white)}
+.ox-feat li::before{content:"✓";position:absolute;left:0;color:var(--b-primary);font-weight:900}
+.ox-qt{margin:0;padding:10px 12px;border-radius:12px;background:var(--b-surface);font:500 13px/1.4 var(--b-font);color:var(--b-white)}
+.ox-qt small{display:block;margin-top:4px;font:500 11.5px var(--b-font);color:var(--b-ink3)}
+.ox-alt{margin:0;text-align:center;font:500 12.5px var(--b-font);color:var(--b-ink3)}
+/* B: forecast */
+.ox-vb{gap:10px}
+.ox-phase{display:flex;align-items:center;gap:10px}
+.ox-phase>span{flex:none;background:var(--b-surface);border-radius:999px;padding:6px 12px;font:700 13px var(--b-font)}
+.ox-phase>div{flex:1;display:flex;gap:4px;background:var(--b-surface);border-radius:999px;padding:8px 10px}
+.ox-phase i{flex:1;height:5px;border-radius:3px;background:var(--b-ink3)}
+.ox-phase i.on{background:linear-gradient(90deg,var(--b-amber),var(--b-red))}
+.ox-best{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;align-items:center;background:var(--b-surface);border-radius:14px;padding:14px}
+.ox-ring{width:46px;height:46px;border-radius:50%;border:4px solid var(--b-white);display:grid;place-items:center;font-size:20px}
+.ox-best div{display:flex;flex-direction:column}.ox-best b{font:700 18px var(--b-font)}.ox-best small{font:500 14px var(--b-font);color:var(--b-ink3)}
+.ox-best p{grid-column:1/-1;margin:6px 0 0;font:600 13px var(--b-font);color:var(--b-amber)}
+.ox-hrs{display:flex;background:var(--b-surface);border-radius:14px;padding:10px 0}
+.ox-hrs>div{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px}
+.ox-hrs>div+div{border-left:1px solid var(--b-line)}
+.ox-hrs b{font:700 14px var(--b-font)}.ox-hrs span{font:500 14px var(--b-font)}.ox-hrs small{font:500 12px var(--b-font);color:var(--b-ink3)}
+.ox-3d{background:var(--b-white);color:var(--b-ink);border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+.ox-3h{display:flex;flex-direction:column}.ox-3h b{font:700 15px var(--b-font)}.ox-3h small{font:500 12px var(--b-font);color:var(--b-ink2)}
+.ox-3r{display:flex;gap:8px}
+.ox-3r>div{flex:1;display:flex;flex-direction:column;align-items:center;gap:1px;background:var(--b-field);border-radius:10px;padding:8px 0}
+.ox-3r b{font:600 12.5px var(--b-font);color:var(--b-ink2)}.ox-3r span{font:800 18px var(--b-font);color:var(--b-amber)}.ox-3r small{font:500 11.5px var(--b-font);color:var(--b-ink2)}
+.ox-3r .ox-lk span,.ox-3r .ox-lk small{filter:blur(4px)}
+.ox-lkn{margin:0;font:600 12.5px var(--b-font);color:var(--b-primary)}
+/* C: sightings */
+.ox-beh button{align-items:center;text-align:center}
+.ox-beh button span{width:100%}
+.ox-ins{background:var(--b-white);color:var(--b-ink)}
+.ox-vc{gap:9px}
+.ox-bkd{color:var(--b-ink)}
+.ox-ih{margin:0;font:700 22px/1.15 var(--b-font)}
+.ox-is{margin:0;font:400 13.5px/1.4 var(--b-font);color:var(--b-ink2)}
+.ox-pr{display:flex;align-items:center;gap:8px}
+.ox-pr span{background:var(--b-ink);color:var(--b-white);border-radius:999px;padding:3px 9px;font:700 11.5px var(--b-font)}
+.ox-pr small{flex:1;font:500 12.5px var(--b-font);color:var(--b-ink2)}
+.ox-pr b{font:700 12.5px var(--b-font)}
+.ox-rr{border:1.5px solid var(--b-primary);border-radius:14px;padding:11px 12px;display:flex;flex-direction:column;gap:7px}
+.ox-rt{margin:0;font:500 13px/1.35 var(--b-font)}
+.ox-rc{display:flex;flex-wrap:wrap;gap:6px}
+.ox-rc span{background:var(--b-field);border-radius:999px;padding:4px 9px;font:600 12px var(--b-font)}
+.ox-you{margin:0;font:600 13px var(--b-font);color:var(--b-green)}
+.ox-rr>small{font:400 11.5px/1.35 var(--b-font);color:var(--b-ink2)}
+.ox-tac{display:flex;flex-direction:column;gap:5px}
+.ox-tac>b{font:700 15px var(--b-font)}
+.ox-tac p{margin:0;font:400 12.5px/1.35 var(--b-font);color:var(--b-ink2)}
+.ox-tac strong{display:block;font:600 13.5px var(--b-font);color:var(--b-ink)}
+.ox-pwc{padding-top:96px}
+.ox-big{display:flex;align-items:center;gap:12px;justify-content:center}
+.ox-big>b{font:800 52px/1 var(--b-font)}
+.ox-big div{display:flex;flex-direction:column;gap:2px}
+.ox-big span{color:var(--b-amber);font-size:18px;letter-spacing:.06em}
+.ox-big small{font:500 12.5px var(--b-font);color:var(--b-ink3)}
+.ox-qc{font-size:12.5px}
+.ox-alert{justify-content:flex-start;gap:12px}
+.ox-alert>span{font-size:26px}
 /* SCREENS:END */
+/* MOTION:START — the niconico-style layer (bterzic123.github.io/niconico-flow-rebuild): a dark hero in the app's
+   own colour with drifting words and a floating phone fan, scroll reveals, count-up numbers, and a live walkthrough
+   inside the three ad phones (a finger glides to each button, presses it, the phones move on). Respects reduced motion. */
+.au-top-hero.au-mx{background:var(--st-accent);color:#fff;margin:0 12px;border-radius:0 0 28px 28px;padding-bottom:0;isolation:isolate}
+.au-top-hero.au-mx::before{content:"";position:absolute;inset:0;z-index:-1;background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:36px 36px;-webkit-mask-image:linear-gradient(180deg,#000 30%,transparent 95%);mask-image:linear-gradient(180deg,#000 30%,transparent 95%)}
+.au-top-hero.au-mx .au-display,.au-top-hero.au-mx .au-lede,.au-top-hero.au-mx .au-eyebrow,.au-top-hero.au-mx .au-byline{color:#fff}
+.au-top-hero.au-mx .au-lede span,.au-top-hero.au-mx .au-byline{color:rgba(255,255,255,.72)}
+.au-top-hero.au-mx .au-eyebrow i{background:var(--st-hi)}
+.au-top-hero.au-mx .au-btn{background:#fff;color:var(--st-accent)}
+.au-top-hero.au-mx .au-lnk{color:#fff}
+.au-mx-words{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:-1;-webkit-mask-image:radial-gradient(ellipse 38% 34% at 50% 30%,transparent 45%,#000 100%);mask-image:radial-gradient(ellipse 38% 34% at 50% 30%,transparent 45%,#000 100%)}
+.au-mx-words span{position:absolute;left:100%;white-space:nowrap;font-weight:700;color:rgba(255,255,255,.11);animation:au-fly linear infinite}
+@keyframes au-fly{to{transform:translateX(calc(-100vw - 120%))}}
+.au-mx .au-hp img{animation:au-float 6s ease-in-out infinite}
+.au-mx .au-hp.au-c img{animation-delay:-2s}.au-mx .au-hp.au-r img{animation-delay:-4s}
+@keyframes au-float{50%{transform:translateY(-10px)}}
+.au-mx-icon{position:absolute;right:clamp(16px,6vw,90px);top:clamp(70px,12vw,130px);width:clamp(54px,6vw,84px);border-radius:22%;box-shadow:0 10px 0 rgba(0,0,0,.18),0 18px 40px rgba(0,0,0,.25);animation:au-bob 1.6s ease-in-out infinite;z-index:1}
+@keyframes au-bob{50%{transform:translateY(-9px) rotate(-5deg)}}
+.au-mx-stats{display:grid;grid-template-columns:repeat(4,1fr);margin:12px 12px 0;border-radius:20px;background:var(--st-ground)}
+.au-mx-stats div{padding:26px 16px;text-align:center;border-left:1px solid var(--st-hair)}
+.au-mx-stats div:first-child{border-left:0}
+.au-mx-stats b{display:block;font-size:clamp(28px,3vw,38px);font-weight:600;letter-spacing:-.03em;line-height:1.1;color:var(--st-ink)}
+.au-mx-stats span{display:block;font-size:14px;color:var(--st-ink2);margin-top:6px;line-height:1.35}
+@media (max-width:720px){.au-mx-stats{grid-template-columns:1fr 1fr}.au-mx-stats div:nth-child(3){border-left:0}.au-mx-stats div:nth-child(n+3){border-top:1px solid var(--st-hair)}.au-mx-icon{display:none}}
+/* scroll reveal */
+/* uses the separate `translate` property, never `transform`, so it can't undo a component's own transform (the trio stage is centred with one) */
+.au-rv{opacity:0;translate:0 22px;transition:opacity .7s cubic-bezier(.2,.7,.2,1),translate .7s cubic-bezier(.2,.7,.2,1)}
+.au-rv.au-in{opacity:1;translate:none}
+/* live walkthrough in the three phones */
+.au-walk{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:18px 0 6px;position:sticky;top:64px;z-index:40;padding:10px 0}
+.au-walk.on{background:var(--st-card);padding:12px 16px;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.12)}
+.au-walk button{border:0;border-radius:999px;background:var(--st-accent);color:#fff;font:600 15px/1 var(--st-font);padding:12px 18px;cursor:pointer}
+.au-walk button.on{background:var(--st-ink)}
+.au-walkbar{flex:1;min-width:240px;display:none;flex-direction:column;gap:7px}
+.au-walkbar.on{display:flex}
+.au-walkbar span{font-size:15px;line-height:1.4;color:var(--st-ink)}
+.au-walkbar i{display:block;height:4px;border-radius:4px;background:var(--st-hair);overflow:hidden}
+.au-walkbar i b{display:block;height:100%;width:0;background:var(--st-accent);transition:width .35s linear}
+.au-finger{position:absolute;z-index:30;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;background:rgba(255,255,255,.6);box-shadow:0 0 0 2px rgba(0,0,0,.35),0 6px 18px rgba(0,0,0,.35);pointer-events:none;opacity:0;transition:left .38s cubic-bezier(.2,.7,.2,1),top .38s cubic-bezier(.2,.7,.2,1),transform .12s,opacity .2s}
+.au-finger.on{opacity:1}.au-finger.press{transform:scale(.7)}
+@media (prefers-reduced-motion:reduce){.au-mx-words span,.au-mx .au-hp img,.au-mx-icon{animation:none}.au-rv{opacity:1;translate:none;transition:none}.au-finger{transition:opacity .2s}}
+html.shot .au-rv,html.phoneonly .au-rv{opacity:1;translate:none}
+/* MOTION:END */
 </style>
 </head>
 <body>
@@ -616,6 +731,7 @@ html.tourmode .au-tour{display:block;position:fixed;inset:0;z-index:6;pointer-ev
     <div class="au-ctas">
       <a class="au-btn" href="#ideas">See the five ideas</a>
       <a class="au-lnk" href="#prototype">Open the prototype</a>
+      <a class="au-lnk" href="#ads" data-walk>▶ Watch it play in the phones</a>
       <button type="button" class="au-lnk au-play" id="heroVideo" hidden>Watch the 30-second walkthrough</button>
     </div>
   </div>
@@ -687,25 +803,25 @@ html.tourmode .au-tour{display:block;position:fixed;inset:0;z-index:6;pointer-ev
         <h2 class="au-h2">Four promises in your ads. <span>One App Store page for all of them.</span></h2>
       </div>
       <div>
-        <p>Meta carries most of the onX Hunt ads we can see: <b>128 live in the Meta Ad Library on 11 November, in 328 versions</b>, and they promise four different things: when deer will move, whose land it is, better scouting tools and what other hunters are seeing. Every ad that sells the app links to the same App Store page, whose first screenshot is <b>“Know when to hunt”</b>, whichever promise brought the hunter there.</p><p>Flow Builder can open a different flow by the campaign the install came from, so the first screens repeat what the ad said, and each ad is judged on the memberships it brings, not the installs.</p>
+        <p>Meta carries most of the onX Hunt ads we can see: <b>128 live in the Meta Ad Library on 11 November, in 328 versions</b>, and they promise four different things: when deer will move, whose land it is, better scouting tools and what other hunters are seeing. Every ad that sells the app links to the same App Store page, whose first screenshot is <b>“Know when to hunt”</b>, whichever promise brought the hunter there.</p><p>Flow Builder can open a different flow by the campaign the install came from. Below, each of your three biggest app promises gets its own version: its own first question, its own first look at the product and its own membership screen, each judged on the memberships it brings, not the installs.</p>
       </div>
     </div>
     <div class="au-duo-stats"><div><b>128</b><span>live onX Hunt ads in the Meta Ad Library, in 328 versions</span></div><div><b>4</b><span>different promises to hunters across them</span></div><div><b>1</b><span>App Store page every app ad links to today, whichever promise it made</span></div></div>
     <div class="au-pf"><div class="au-pf-h"><h3>Your ads, sorted by promise</h3><p>Share of the 325 grouped ad versions, Meta Ad Library, all countries, 11 Nov 2026</p></div><div class="au-pf-bar"><i style="flex:214;background:var(--st-accent)" title="Deer Movement Forecast"></i><i style="flex:57;background:var(--st-hi)" title="Land ownership"></i><i style="flex:24;background:var(--st-ink2)" title="Scouting tools"></i><i style="flex:16;background:var(--st-ink3)" title="Hunters’ sightings"></i><i style="flex:7;background:var(--st-mark)" title="State land, on your site"></i><i style="flex:7;background:var(--st-hair)" title="Gameday on YouTube"></i></div><div class="au-pf-leg"><span><i style="background:var(--st-accent)"></i>Deer Movement Forecast · 214</span><span><i style="background:var(--st-hi)"></i>Land ownership · 57</span><span><i style="background:var(--st-ink2)"></i>Scouting tools · 24</span><span><i style="background:var(--st-ink3)"></i>Hunters’ sightings · 16</span><span><i style="background:var(--st-mark)"></i>State land, on your site · 7</span><span><i style="background:var(--st-hair)"></i>Gameday on YouTube · 7</span></div><div class="au-pf-grid"><article class="au-pf-c"><div class="au-pf-cov"><img src="assets/ads/g-forecast.jpg" alt="A frame from the ad"><span class="au-pf-tag">Most versions · running now</span><span class="au-pf-n">214 versions</span></div><div class="au-pf-bd"><div class="au-pf-hook">“Stack the odds this season. onX Hunt’s Deer Movement Forecast analyzes over 50 environmental factors…”</div><div class="au-pf-meta">59 ads since 14 Aug 2026, also “Not every hunt gives you the same odds”, “Make every sit count” and the Rut Calendar · App Store and Google Play</div><dl><dt>In the ad</dt><dd>Deer on their feet in daylight, then the 3-Day Deer Movement Forecast: “Wondering when the deer will be on their feet?”</dd><dt>The promise</dt><dd>Know which days and hours to be in the stand.</dd><dt>Today it lands on</dt><dd>Your App Store page, the same one as every other ad.</dd></dl><div class="au-pf-go"><button type="button" data-duogo="b">Open its flow ›</button></div></div></article><article class="au-pf-c"><div class="au-pf-cov"><img src="assets/ads/ad-a.jpg" alt="A frame from the ad"><span class="au-pf-tag">Since October</span><span class="au-pf-n">57 versions</span></div><div class="au-pf-bd"><div class="au-pf-hook">“Not sure who owns? onX Hunt app has you covered with property lines and landowner information.”</div><div class="au-pf-meta">31 ads since 2 Oct 2026, with “View private and public land boundaries and up-to-date landowner information” · App Store and Google Play</div><dl><dt>In the ad</dt><dd>A buck in cover, then the map with property lines and a landowner card: owner, tax address, acreage.</dd><dt>The promise</dt><dd>Know whose land I’m on before I step onto it.</dd><dt>Today it lands on</dt><dd>Your App Store page, whose first screenshot is about timing, not land.</dd></dl><div class="au-pf-go"><button type="button" data-duogo="a">Open its flow ›</button></div></div></article><article class="au-pf-c"><div class="au-pf-cov"><img src="assets/ads/g-scout.jpg" alt="A frame from the ad"><span class="au-pf-tag">Since August</span><span class="au-pf-n">24 versions</span></div><div class="au-pf-bd"><div class="au-pf-hook">“Compass Mode provides a strategic advantage by helping you pinpoint exactly where a bull was standing when he sounded off…”</div><div class="au-pf-meta">18 ads since 14 Aug 2026: Compass Mode, 3D Maps, LIDAR and hunt layers · mostly Google Play</div><dl><dt>In the ad</dt><dd>“A compass &amp; rangefinder in your phone”, ridges, basins and saddles in 3D.</dd><dt>The promise</dt><dd>Scout the ground before I walk it.</dd><dt>Today it lands on</dt><dd>Your App Store page, the same one as every other ad.</dd></dl><div class="au-pf-go"><span>No phone of its own: it would open the land flow, on the map.</span></div></div></article><article class="au-pf-c"><div class="au-pf-cov"><img src="assets/ads/ad-c.jpg" alt="A frame from the ad"><span class="au-pf-tag">Newest · since 26 Oct</span><span class="au-pf-n">16 versions</span></div><div class="au-pf-bd"><div class="au-pf-hook">“Submit your sightings and see what others in your area are seeing to adjust your hunting strategy accordingly”</div><div class="au-pf-meta">4 ads since 26 Oct 2026 · App Store and Google Play</div><dl><dt>In the ad</dt><dd>“Wondering what deer movement is like in your area?”, then your Deer Behavior Report and Local Rut Reports from hunters within 100 miles.</dd><dt>The promise</dt><dd>Know what deer are doing near me this week.</dd><dt>Today it lands on</dt><dd>Your App Store page, the same one as every other ad.</dd></dl><div class="au-pf-go"><button type="button" data-duogo="c">Open its flow ›</button></div></div></article><article class="au-pf-c"><div class="au-pf-cov"><img src="assets/ads/g-web.jpg" alt="A frame from the ad"><span class="au-pf-tag">Since 6 Nov</span><span class="au-pf-n">7 versions</span></div><div class="au-pf-bd"><div class="au-pf-hook">“Know every WMA boundary before you go.”</div><div class="au-pf-meta">6 ads since 6 Nov 2026, “Built for Alabama’s Whitetail Season” and Pennsylvania’s · all link to onxmaps.com/al and /pa</div><dl><dt>In the ad</dt><dd>A whitetail and your map of one state’s Wildlife Management Areas and State Game Land.</dd><dt>The promise</dt><dd>My state’s public land, mapped.</dd><dt>Today it lands on</dt><dd>A state page on onxmaps.com, not the app.</dd></dl><div class="au-pf-go"><span>No phone: these go to your site. Linked to the app, they would share the land flow.</span></div></div></article><article class="au-pf-c"><div class="au-pf-cov"><img src="assets/ads/g-yt.jpg" alt="A frame from the ad"><span class="au-pf-tag">Since 15 Oct</span><span class="au-pf-n">7 versions</span></div><div class="au-pf-bd"><div class="au-pf-hook">“Hunting the Rut After a 40° Drop and Pheasant Hunting”</div><div class="au-pf-meta">7 ads since 15 Oct 2026 · all link to YouTube</div><dl><dt>In the ad</dt><dd>Episodes of onX Hunt Gameday, “new episodes dropping weekly”.</dd><dt>The promise</dt><dd>Watch the show.</dd><dt>Today it lands on</dt><dd>Your YouTube channel, not the app.</dd></dl><div class="au-pf-go"><span>No phone: these sell the show, not the app.</span></div></div></article></div><p class="au-pf-note">We read every active ad on the onX Hunt page and grouped them by what they promise; counts are ad versions, not spend. Three more (a Canada ad and two with no text) aren’t in a group. Three app promises get a phone of their own below; the scouting ads would open the land flow, on the map. One of the land ads also says “Experience property boundaries and more with a free 7-day trial.”</p></div>
-    <div class="au-duo-h"><h3>Three ads, three flows</h3><p>Left to right: a hunter who saw your land-ownership ad, your Deer Movement Forecast ad and your sightings ad. Tap <b>Today</b> to see where all three land now, then tap through the proposal, or jump straight to an idea.</p></div>
+    <div class="au-duo-h"><h3>Three ads, three versions</h3><p>Left to right: version A for your land-ownership ad, version B for your Deer Movement Forecast ad, version C for your sightings ad. Each asks something different, shows something different and sells a different membership screen. Tap a step to see each version’s own screen, or a recommendation under a phone to see it on that phone.</p></div>
     <div class="au-duo-steps" id="duoSteps" aria-label="Steps, in every phone"></div>
     <div class="au-duo-ideas" id="duoIdeas" aria-label="The five ideas, in every phone"></div>
     <p class="au-duo-stepcap" id="duoStepCap"></p>
     <div class="au-duo-tog" role="group" aria-label="Which ad"><button type="button" data-duoone="a" class=on>Ad 1 · Land ownership</button><button type="button" data-duoone="b">Ad 2 · Deer Movement Forecast</button><button type="button" data-duoone="c">Ad 3 · Sightings</button></div>
     <div class="au-duo au-n3" id="duoStage" data-one="a">
-      <div class="au-duo-ph au-duo-a"><p class="au-duo-pill"><b>Meta ad</b><span>Not sure who owns? onX Hunt app has you covered…</span></p><div class="au-duo-fr" id="duoFra"><div class="au-duo-ld">Loading the flow…</div></div><p class="au-duo-cap" id="duoCapa"></p></div><div class="au-duo-ph au-duo-b"><p class="au-duo-pill"><b>Meta ad</b><span>Stack the odds this season…</span></p><div class="au-duo-fr" id="duoFrb"><div class="au-duo-ld">Loading the flow…</div></div><p class="au-duo-cap" id="duoCapb"></p></div><div class="au-duo-ph au-duo-c"><p class="au-duo-pill"><b>Meta ad</b><span>Submit your sightings and see what others in your area are seeing…</span></p><div class="au-duo-fr" id="duoFrc"><div class="au-duo-ld">Loading the flow…</div></div><p class="au-duo-cap" id="duoCapc"></p></div>
+      <div class="au-duo-ph au-duo-a"><p class="au-duo-pill"><b>Meta ad</b><span>Not sure who owns? onX Hunt app has you covered…</span></p><div class="au-duo-fr" id="duoFra"><div class="au-duo-ld">Loading the flow…</div></div><p class="au-duo-cap" id="duoCapa"></p><div class="au-duo-recs" id="duoReca" aria-label="Recommendations for this ad"></div></div><div class="au-duo-ph au-duo-b"><p class="au-duo-pill"><b>Meta ad</b><span>Stack the odds this season…</span></p><div class="au-duo-fr" id="duoFrb"><div class="au-duo-ld">Loading the flow…</div></div><p class="au-duo-cap" id="duoCapb"></p><div class="au-duo-recs" id="duoRecb" aria-label="Recommendations for this ad"></div></div><div class="au-duo-ph au-duo-c"><p class="au-duo-pill"><b>Meta ad</b><span>Submit your sightings and see what others in your area are seeing…</span></p><div class="au-duo-fr" id="duoFrc"><div class="au-duo-ld">Loading the flow…</div></div><p class="au-duo-cap" id="duoCapc"></p><div class="au-duo-recs" id="duoRecc" aria-label="Recommendations for this ad"></div></div>
     </div>
     <p class="au-duo-hint">Tap through any phone and the others follow. A dot marks the screens that differ by ad.</p>
     <table class="au-duo-tbl" id="duoTbl"></table>
-    <div class="au-duo-next"><div><b>Day 1</b><h4>Pass the Meta campaign into Adapty</h4><p>After a one-time SDK setup, the campaign each install came from arrives as a user attribute and picks the flow at first open. No app release.</p></div><div><b>Week 1</b><h4>One flow per promise</h4><p>Land, forecast and sightings each get their own first screens; the scouting ads open the land flow, on the map.</p></div><div><b>Week 2</b><h4>Judge each ad on memberships</h4><p>Each ad’s flow against today’s, measured on trials, paid memberships and what each install from that ad earns, so spend follows the promise that pays.</p></div></div>
-    <p class="au-adn">All three phones run the whole flow with all five ideas. In Apple Ads you hold about 97% of US searches for “onx hunt” and 86% for “gps hunting maps”, a strong brand defence, while some spend reaches people who want something else: “google maps” (1%), “waze navigation” (15%), parking searches, “gps manhunt” (92%) and “hunting duel” (56%). That data is account-level, so it can’t tell onX Hunt from onX Offroad. Your Google and YouTube ads are live too; we can’t see where they link. This layer carries no range: only a test per ad can give one.</p>
+    <div class="au-duo-next"><div><b>Day 1</b><h4>Pass the Meta campaign into Adapty</h4><p>After a one-time SDK setup, the campaign each install came from arrives as a user attribute and picks the flow at first open. No app release.</p></div><div><b>Week 1</b><h4>One version per promise</h4><p>Land, forecast and sightings each get their own version; the scouting ads open the land version, on the map.</p></div><div><b>Week 2</b><h4>Judge each ad on memberships</h4><p>Each ad’s flow against today’s, measured on trials, paid memberships and what each install from that ad earns, so spend follows the promise that pays.</p></div></div>
+    <p class="au-adn">Each phone is its own version, and the five ideas above sit underneath all three. In Apple Ads you hold about 97% of US searches for “onx hunt” and 86% for “gps hunting maps”, a strong brand defence, while some spend reaches people who want something else: “google maps” (1%), “waze navigation” (15%), parking searches, “gps manhunt” (92%) and “hunting duel” (56%). That data is account-level, so it can’t tell onX Hunt from onX Offroad. Your Google and YouTube ads are live too; we can’t see where they link. This layer carries no range: only a test per ad can give one.</p>
   </div>
-  <script type="application/json" id="duoData">{"flows": [{"k": "a", "ad": "a", "label": "Ad 1 · Land ownership", "pill": "Not sure who owns? onX Hunt app has you covered…"}, {"k": "b", "ad": "b", "label": "Ad 2 · Deer Movement Forecast", "pill": "Stack the odds this season…"}, {"k": "c", "ad": "c", "label": "Ad 3 · Sightings", "pill": "Submit your sightings and see what others in your area are seeing…"}], "rows": [{"id": "ad", "h": "Your ad", "a": "“Use onX Hunt to contact landowners, explore public opportunities…”, video “Not sure who owns”.", "b": "“Stack the odds this season. onX Hunt’s Deer Movement Forecast…” · Check This Week’s Forecast.", "c": "“Submit your sightings and see what others in your area are seeing…”"}, {"id": "welcome", "h": "Welcome", "a": "“Private and public lands”, over a map with property lines.", "b": "“Know when to hunt”, over a whitetail.", "c": "“What are deer doing near you?”, over a frame from the ad."}, {"id": "species", "h": "What they hunt", "a": "Asked, nothing picked: the ad was about land, not a species.", "b": "Whitetail already picked: the ad was about deer movement.", "c": "Whitetail already picked: the ad was about deer sightings."}, {"id": "parcel", "h": "First parcel", "a": "“Tap a parcel to see whose land it is.”", "b": "“Tap where you’ll sit for this week’s forecast.”", "c": "“Tap where you’ll sit to see what’s been reported”, with Local Rut Reports on the card."}], "tableTitle": "The same app, answering three different ads.", "tableSub": "The five ideas sit underneath all three. Only these screens change with the ad they saw; each row opens that screen in every phone.", "steps": [{"id": "ad", "label": "The ad"}, {"id": "today", "label": "Today"}, {"sep": "Proposed"}, {"id": "welcome"}, {"id": "species"}, {"id": "state"}, {"id": "parcel"}, {"id": "plans"}, {"id": "offer"}, {"id": "sos"}], "stepCaps": {"today": "<b>Today</b>, all three ads link to the same App Store page, and its first screenshot sells “Know when to hunt”, whichever ad they tapped. We haven’t seen the app’s own first screens or membership screen, so “today” stops at the store.", "state": "Same for every ad: where they’ll hunt, which opens the map there and picks their membership (idea 1).", "plans": "Same for every ad: the membership their area needs, first (idea 3).", "offer": "Same for every ad: the plan that fits better, when they close the memberships (idea 4).", "sos": "Same for every ad: onX SOS once, right after they join (idea 5)."}}</script>
+  <script type="application/json" id="duoData">{"flows": [{"k": "a", "ad": "a", "label": "Ad 1 · Land ownership", "pill": "Not sure who owns? onX Hunt app has you covered…", "version": "Version A · Land first", "recs": [{"step": "state", "title": "Ask whose land, not what they hunt", "why": "<b>Try</b> “Whose land do you want to see?” first, <b>because</b> the ad sold property lines, which you sell by state; one answer opens the map and picks the tier.", "impact": "+10–15%", "il": "CR to purchase"}, {"step": "parcel", "title": "One parcel, owner blurred", "why": "<b>Try</b> a free tap that shows boundary and hunt unit with the landowner blurred, <b>because</b> “Not sure who owns?” is half answered before the price.", "impact": "+5–15%", "il": "CR to purchase"}, {"step": "plans", "title": "Sell landowner names, with a hunter’s words", "why": "<b>Try</b> “Every owner in your state” over the tier their area needs and a review about getting permission, <b>because</b> that is the job this ad hired the app for.", "impact": "+10–15%", "il": "ARPU"}]}, {"k": "b", "ad": "b", "label": "Ad 2 · Deer Movement Forecast", "pill": "Stack the odds this season…", "version": "Version B · Forecast first", "recs": [{"step": "state", "title": "Ask when they can sit", "why": "<b>Try</b> mornings, evenings or whenever deer move as the only question, <b>because</b> the ad promised the right time, so the answer shapes the first forecast.", "impact": "+5–10%", "il": "CR to purchase"}, {"step": "parcel", "title": "Today free, Thursday and Friday locked", "why": "<b>Try</b> today’s Best at 6 AM free with the rest of the 3-Day Forecast locked, <b>because</b> the ad’s button was “Check This Week’s Forecast”.", "impact": "+5–15%", "il": "CR to purchase"}, {"step": "plans", "title": "Open on Elite, the tier with the forecast", "why": "<b>Try</b> Elite yearly first, against $179.88 for a year of monthly, <b>because</b> your listing puts the forecast in Elite; opening on Premium sells a plan without it.", "impact": "+10–15%", "il": "ARPU"}]}, {"k": "c", "ad": "c", "label": "Ad 3 · Sightings", "pill": "Submit your sightings and see what others in your area are seeing…", "version": "Version C · Reports first", "recs": [{"step": "state", "title": "Ask for their sighting first", "why": "<b>Try</b> “What deer behavior have you seen today?” as screen one, <b>because</b> the ad asked them to submit sightings, and a hunter who gave a report has a reason to stay.", "impact": "+5–10%", "il": "CR to purchase"}, {"step": "parcel", "title": "Show the reports theirs joins", "why": "<b>Try</b> your Local Rut Reports with their report counted beside hunters within 100 miles, <b>because</b> it proves the ad’s promise before any price.", "impact": "+5–15%", "il": "CR to purchase"}, {"step": "offer", "title": "Rut alerts instead of a second price", "why": "<b>Try</b> alerts for their area when they close, <b>because</b> a sightings hunter who says no today comes back when hunters near them report chasing.", "impact": "+5–10%", "il": "CR from closers"}]}], "rows": [{"id": "ad", "h": "Your ad", "a": "“Use onX Hunt to contact landowners, explore public opportunities…”, video “Not sure who owns”.", "b": "“Stack the odds this season. onX Hunt’s Deer Movement Forecast…” · Check This Week’s Forecast.", "c": "“Submit your sightings and see what others in your area are seeing…”"}, {"id": "welcome", "h": "Welcome", "a": "“Private and public lands”, over a map with property lines.", "b": "“Know when to hunt”, over a whitetail.", "c": "“What are deer doing near you?”, over a frame from the ad."}, {"id": "state", "h": "First question", "a": "“Whose land do you want to see?”: home state, two states or everywhere. No species question.", "b": "“When can you sit this week?”: mornings, evenings or whenever deer move. Whitetail is set.", "c": "“What deer behavior have you seen today?”: scraping, fresh rubs, sparring, chasing. Their report goes in first."}, {"id": "parcel", "h": "First look", "a": "Map: tap a parcel, see boundary and hunt unit; landowner blurred.", "b": "Insights: Chasing Phase, Best at 6 AM · 85% High, today’s movement free, Thursday and Friday locked.", "c": "Insights: 74 days to the rut, Local Rut Reports with their report counted, Top tactics."}, {"id": "plans", "h": "Membership", "a": "“Every owner in your state”, landowner features, a review about getting permission; the tier their area needs is marked.", "b": "“The Deer Movement Forecast comes with Elite”: Elite yearly vs monthly only, Premium as one line.", "c": "4.9 stars, game wardens and two hunters’ reviews over three tiers, Premium selected."}, {"id": "offer", "h": "On close", "a": "The plan that fits better: Premium $34.99 or a $14.99 month of Elite.", "b": "Elite one month at a time, $14.99.", "c": "No price: rut alerts for their area."}], "tableTitle": "Three versions of the same app, one per ad.", "tableSub": "Each row is a step where the versions differ; a click opens that step in every phone, each on its own version.", "steps": [{"id": "ad", "label": "The ad"}, {"id": "today", "label": "Today"}, {"sep": "Proposed"}, {"id": "welcome", "label": "Welcome"}, {"id": "state", "label": "First question", "ids": {"b": "ask-b", "c": "ask-c"}}, {"id": "parcel", "label": "First look", "ids": {"b": "value-b", "c": "value-c"}}, {"id": "plans", "label": "Membership", "ids": {"b": "plans-b", "c": "plans-c"}}, {"id": "offer", "label": "On close", "ids": {"b": "offer-b", "c": "offer-c"}}, {"id": "sos", "label": "onX SOS"}], "stepCaps": {"today": "<b>Today</b>, all three ads link to the same App Store page, and its first screenshot sells “Know when to hunt”, whichever ad they tapped. We haven’t seen the app’s own first screens or membership screen, so “today” stops at the store.", "sos": "Same for every version: onX SOS once, right after they join (idea 5)."}}</script>
 </section>
 
 <section class="au-sec au-white" id="prototype">
@@ -763,77 +879,151 @@ html.tourmode .au-tour{display:block;position:fixed;inset:0;z-index:6;pointer-ev
     <p class="ox-sub ox-c" data-show="ad:a">View land ownership, property lines, BLM, National Forest, and more.</p>
     <p class="ox-sub ox-c" data-show="ad:c">Submit your sightings and see what other hunters in your area are seeing.</p>
     <p class="ox-stars">★★★★★ <span>4.9 · 274K ratings · Trusted by 5,000 game wardens</span></p>
-    <button class="ox-cta" data-go="species">Get started</button>
+    <button class="ox-cta" data-go="next">Get started</button>
   </div>
 </section>
 
-<section class="scr ox-dk" data-id="species">
+<section class="scr ox-dk" data-id="state" data-ad="a">
   <div class="body">
-    <div class="ox-top"><button class="ox-bk" data-back aria-label="Back">‹</button><div class="ox-prog"><i style="width:33%"></i></div></div>
-    <h1 class="ox-h1">WHAT ARE YOU AFTER THIS SEASON?</h1>
-    <p class="ox-sub">We’ll set your map layers and forecasts for it.</p>
-    <p class="ox-pk" data-show="ad:b">Your ad was about deer movement, so whitetail is picked.</p>
-    <p class="ox-pk" data-show="ad:c">Your ad was about deer sightings, so whitetail is picked.</p>
-    <div class="ox-grid" data-hl="1">
-      <button data-pick="sp:whitetail" data-advance="state"><b>🦌</b><span>Whitetail</span></button>
-      <button data-pick="sp:elk" data-advance="state"><b>🫎</b><span>Elk</span></button>
-      <button data-pick="sp:mule" data-advance="state"><b>🦌</b><span>Mule deer</span></button>
-      <button data-pick="sp:turkey" data-advance="state"><b>🦃</b><span>Turkey</span></button>
-      <button data-pick="sp:waterfowl" data-advance="state"><b>🦆</b><span>Waterfowl</span></button>
-      <button data-pick="sp:other" data-advance="state"><b>🎯</b><span>Something else</span></button>
-    </div>
-  </div>
-</section>
-
-<section class="scr ox-dk" data-id="state">
-  <div class="body">
-    <div class="ox-top"><button class="ox-bk" data-back aria-label="Back">‹</button><div class="ox-prog"><i style="width:66%"></i></div></div>
-    <h1 class="ox-h1" data-hl="1">WHERE WILL YOU HUNT?</h1>
-    <p class="ox-sub">Your map opens there, with private and public land, Hunting Units and <span data-bind="label:sp"></span> layers.</p>
-    <div class="ox-list" data-hl="1">
+    <div class="ox-top"><button class="ox-bk" data-back aria-label="Back">‹</button><div class="ox-prog"><i style="width:50%"></i></div></div>
+    <h1 class="ox-h1">WHOSE LAND DO YOU WANT TO SEE?</h1>
+    <p class="ox-sub">Your map opens there, with every property line, landowner and public parcel. Your ad was about land, so we skip the species question.</p>
+    <div class="ox-list" data-hl="1 a1">
       <button data-pick="area:one"><div><b>My home state</b><small>One state or Canada</small></div><i>✓</i></button>
       <button data-pick="area:two"><div><b>Two states, or my state plus Canada</b><small>Home and one trip</small></div><i>✓</i></button>
       <button data-pick="area:all"><div><b>Out of state, wherever the tags are</b><small>All 50 states and Canada</small></div><i>✓</i></button>
     </div>
-    <button class="ox-cta" data-go="parcel">Open my map</button>
+    <button class="ox-cta" data-go="next">Open my map</button>
   </div>
 </section>
 
-<section class="scr ox-mapscr" data-id="parcel">
+<section class="scr ox-dk" data-id="ask-b" data-ad="b">
+  <div class="body">
+    <div class="ox-top"><button class="ox-bk" data-back aria-label="Back">‹</button><div class="ox-prog"><i style="width:50%"></i></div></div>
+    <h1 class="ox-h1">WHEN CAN YOU SIT THIS WEEK?</h1>
+    <p class="ox-sub">Your forecast will put your best sit first. Your ad was about deer movement, so we set it up for whitetail.</p>
+    <div class="ox-list" data-hl="1 b1">
+      <button data-pick="sit:am"><div><b>Mornings</b><small>Before work, first light</small></div><i>✓</i></button>
+      <button data-pick="sit:pm"><div><b>Evenings</b><small>After work, last light</small></div><i>✓</i></button>
+      <button data-pick="sit:any"><div><b>Whenever deer move</b><small>I can hunt any day this week</small></div><i>✓</i></button>
+    </div>
+    <button class="ox-cta" data-go="next">Show my forecast</button>
+  </div>
+</section>
+
+<section class="scr ox-dk" data-id="ask-c" data-ad="c">
+  <div class="body">
+    <div class="ox-top"><button class="ox-bk" data-back aria-label="Back">‹</button><div class="ox-prog"><i style="width:50%"></i></div></div>
+    <h1 class="ox-h1">WHAT DEER BEHAVIOR HAVE YOU SEEN TODAY?</h1>
+    <p class="ox-sub">Your ad asked for your sightings. Add yours, then see what hunters within 100 miles report.</p>
+    <div class="ox-grid ox-beh" data-hl="1 c1">
+      <button data-toggle="seen:scrape"><b>🍂</b><span>Scraping</span></button>
+      <button data-toggle="seen:rubs"><b>🌲</b><span>Fresh rubs</span></button>
+      <button data-toggle="seen:spar"><b>🦌</b><span>Sparring</span></button>
+      <button data-toggle="seen:chase"><b>💨</b><span>Chasing</span></button>
+    </div>
+    <button class="ox-cta" data-go="next">Add report for this area</button>
+    <button class="ox-ghost" data-go="next">Nothing yet, show me reports</button>
+  </div>
+</section>
+
+<section class="scr ox-mapscr" data-id="parcel" data-ad="a">
   <div class="ox-map"><img src="assets/crop/map-parcel.png" alt=""><span class="ox-tap" data-show="tap:0">Tap any parcel</span></div>
   <button class="ox-pin" data-pick="tap:1" aria-label="Tap a parcel"></button>
-  <div class="ox-sheet" data-hl="2">
+  <div class="ox-sheet" data-hl="2 a2">
     <span class="ox-grab"></span>
     <p class="ox-k" data-show="tap:0">Your first look is free</p>
-    <div data-show="tap:0"><h2 class="ox-h2" data-show="ad:a">TAP A PARCEL TO SEE WHOSE LAND IT IS</h2><h2 class="ox-h2" data-show="ad:b">TAP WHERE YOU’LL SIT FOR THIS WEEK’S FORECAST</h2><h2 class="ox-h2" data-show="ad:c">TAP WHERE YOU’LL SIT TO SEE WHAT’S BEEN REPORTED</h2><p class="ox-sub ox-dark" data-show="ad:a">Boundaries, landowner, and the hunt unit you’re in, before you take a step.</p><p class="ox-sub ox-dark" data-show="ad:b">The 3-Day Deer Movement Forecast for that spot, with its boundary. The landowner is one step away.</p><p class="ox-sub ox-dark" data-show="ad:c">Local Rut Reports from hunters around that spot, with its boundary. The landowner is one step away.</p><button class="ox-cta" data-pick="tap:1">Tap the parcel</button></div>
+    <div data-show="tap:0"><h2 class="ox-h2">TAP A PARCEL TO SEE WHOSE LAND IT IS</h2><p class="ox-sub ox-dark">Boundaries, landowner, and the hunt unit you’re in, before you take a step.</p><button class="ox-cta" data-pick="tap:1">Tap the parcel</button></div>
     <div data-show="tap:1">
       <p class="ox-k">TN Private Lands</p>
       <h2 class="ox-own"><span class="ox-blur">TP FARMS LLC</span> <i>🔒 Landowner with Premium</i></h2>
       <div class="ox-tabs"><b>Overview</b><span>Hunt Unit</span><span>Weather</span><span>Content</span></div>
-      <div class="ox-fc"><span>🦌</span><div><b>3-Day Deer Movement Forecast</b><small>Based on local conditions</small></div></div>
-      <p class="ox-rut" data-show="ad:a">79 days until the whitetail rut kicks off here</p><p class="ox-rut" data-show="ad:b">79 days until the whitetail rut kicks off here</p><div class="ox-fc ox-rep" data-show="ad:c"><span>📍</span><div><b>Local Rut Reports</b><small>Scraping, fresh rubs, sparring: what hunters near you see</small></div></div>
-      <button class="ox-cta" data-go="plans">See who owns it</button>
+            <p class="ox-rut">Owner, tax address and acreage for every parcel in your state</p>
+      <button class="ox-cta" data-go="next">See who owns it</button>
     </div>
   </div>
 </section>
 
-<section class="scr ox-dk" data-id="plans">
+<section class="scr ox-dk" data-id="value-b" data-ad="b">
+  <div class="body ox-vb">
+    <div class="ox-top"><button class="ox-bk" data-back aria-label="Back">‹</button><b class="ox-ttl">Insights</b></div>
+    <p class="ox-k">Your spot · whitetail · last updated just now</p>
+    <div class="ox-phase"><span>Chasing Phase</span><div><i></i><i></i><i class="on"></i><i></i><i></i></div></div>
+    <div class="ox-best"><span class="ox-ring">🦌</span><div><b>Best at 6 AM</b><small>85% High</small></div><p><span data-show="sit:am">Your mornings: be in by first light.</span><span data-show="sit:pm">Your evenings are lower today; mornings win.</span><span data-show="sit:any">Today’s best sit is the morning one.</span></p></div>
+    <div class="ox-hrs"><div><b>6 AM</b><span>42°</span><small>↙ 2 mph</small></div><div><b>7 AM</b><span>42°</span><small>↙ 2 mph</small></div></div>
+    <div class="ox-3d" data-hl="2 b2">
+      <div class="ox-3h"><b>3-Day Deer Movement Forecast</b><small>Based on local conditions</small></div>
+      <div class="ox-3r"><div><b>Today</b><span>56%</span><small>Moderate</small></div><div class="ox-lk"><b>Thu</b><span>56%</span><small>Moderate</small></div><div class="ox-lk"><b>Fri</b><span>53%</span><small>Moderate</small></div></div>
+      <p class="ox-lkn">🔒 Thursday and Friday come with Elite</p>
+    </div>
+    <button class="ox-cta" data-go="next">Unlock the 3-day forecast</button>
+  </div>
+</section>
+
+<section class="scr ox-ins" data-id="value-c" data-ad="c">
+  <div class="body ox-vc">
+    <div class="ox-top"><button class="ox-bk ox-bkd" data-back aria-label="Back">‹</button><b class="ox-ttl">Insights</b></div>
+    <h2 class="ox-ih">74 days until the whitetail rut kicks off here</h2>
+    <p class="ox-is">Peak scrape and rub activity, bucks move further during the day searching for first estrus doe.</p>
+    <div class="ox-pr"><span>Pre-rut</span><small>Oct 22 – 31</small><b>Next: Seeking ›</b></div>
+    <div class="ox-rr" data-hl="2 c2">
+      <p class="ox-rt"><b>Local Rut Reports</b> · 2 local hunters’ reports last 3 days, plus yours</p>
+      <div class="ox-rc"><span>Chasing • 1</span><span>Fresh Rubs • 1</span><span>Scraping • 1</span><span>Sparring • 1</span></div>
+      <p class="ox-you">✓ Your report is in: <b data-bind="label:seen"></b></p>
+      <small>We summarize your reports along with those of other hunters in a 100 mile radius over the last 3 days.</small>
+    </div>
+    <div class="ox-tac"><b>Top tactics</b><p><strong>1. Hunt fresh scrapes</strong> Moving trail cameras to scrapes will yield high value intel.</p><p><strong>2. Go for target bucks now</strong> Now is the time to roll the dice and hunt his core area before his home range extends dramatically.</p></div>
+    <button class="ox-cta" data-go="next">Get my state’s map and reports</button>
+  </div>
+</section>
+
+<section class="scr ox-dk" data-id="plans" data-ad="a">
   <button class="ox-x" data-go="offer" aria-label="Close">✕</button>
   <div class="body ox-pw">
-    <div class="ox-mark ox-mk2"><i></i><img src="assets/brand/logo-5.svg" alt="onX"><i></i></div>
-    <h1 class="ox-h1 ox-c" data-hl="3"><span data-show="area:one">YOUR STATE, EVERY LINE ON IT</span><span data-show="area:two">BOTH STATES, ONE MEMBERSHIP</span><span data-show="area:all">EVERY STATE, EVERY TAG</span></h1>
-    <p class="ox-proof">★ 4.9 · 274K ratings <i></i> Trusted by 5,000 game wardens</p>
+        <h1 class="ox-h1 ox-c" data-hl="a3"><span data-show="area:one">EVERY OWNER IN YOUR STATE</span><span data-show="area:two">EVERY OWNER IN BOTH STATES</span><span data-show="area:all">EVERY OWNER, ALL 50 STATES</span></h1>
+    <ul class="ox-feat" data-hl="a3"><li>Property lines with landowner names</li><li>161.5 million private properties, 1.8 billion acres public</li><li>GMUs, Hunting Units, public and state land</li></ul>
+    <p class="ox-qt">“it really helps to know who the land owners are to make it easier to get permission to hunt” <small>App Store review, Jul 2026 · ★ 4.9 from 274K</small></p>
     <div class="ox-plans" data-hl="3">
       <button class="ox-plan" data-pick="tier:premium"><span class="ox-fit" data-show="area:one">FITS YOUR HUNT</span><div><b>Premium</b><small>One state or Canada</small></div><strong>$34.99<em>/yr · $2.92/mo</em></strong></button>
       <button class="ox-plan" data-pick="tier:plus"><span class="ox-fit" data-show="area:two">FITS YOUR HUNT</span><div><b>Premium+</b><small>Two states, or one state plus Canada</small></div><strong>$49.99<em>/yr · $4.17/mo</em></strong></button>
       <button class="ox-plan" data-pick="tier:elite"><span class="ox-fit" data-show="area:all">FITS YOUR HUNT</span><div><b>Elite Nationwide</b><small>All 50 states and Canada, TerrainX 3D, Deer Movement Forecast, Draw Odds</small></div><strong>$99.99<em>/yr · $8.33/mo</em></strong></button>
     </div>
     <p class="ox-save" data-show="tier:elite">Elite monthly is $14.99: $179.88 a year. Yearly saves $79.89, 44%.</p>
-    <button class="ox-cta" data-go="sos">Continue</button>
+    <button class="ox-cta" data-go="next">Continue</button>
   </div>
 </section>
 
-<section class="scr sheet ox-sht" data-id="offer">
+<section class="scr ox-dk" data-id="plans-b" data-ad="b">
+  <button class="ox-x" data-go="offer-b" aria-label="Close">✕</button>
+  <div class="body ox-pw">
+    <h1 class="ox-h1 ox-c" data-hl="3 b3">THE DEER MOVEMENT FORECAST COMES WITH ELITE</h1>
+    <ul class="ox-feat"><li>Deer Movement Forecast, every day of the season</li><li>Proprietary maps for all 50 states and Canada</li><li>TerrainX 3D Viewer, Recent Imagery, Route Builder</li></ul>
+    <div class="ox-plans" data-hl="3">
+      <button class="ox-plan" data-pick="bp:year"><span class="ox-fit">SAVE 44%</span><div><b>Elite Yearly</b><small>$8.33 a month · $79.89 less than monthly</small></div><strong>$99.99<em>/yr</em></strong></button>
+      <button class="ox-plan" data-pick="bp:month"><div><b>Elite Monthly</b><small>$179.88 over a year</small></div><strong>$14.99<em>/mo</em></strong></button>
+    </div>
+    <p class="ox-alt">Maps for one state only: Premium, $34.99 a year</p>
+    <p class="ox-proof">★ 4.9 · 274K ratings <i></i> Trusted by 5,000 game wardens</p>
+    <button class="ox-cta" data-go="sos">Start Elite</button>
+  </div>
+</section>
+
+<section class="scr ox-dk" data-id="plans-c" data-ad="c">
+  <button class="ox-x" data-go="offer-c" aria-label="Close">✕</button>
+  <div class="body ox-pw ox-pwc">
+    <div class="ox-big"><b>4.9</b><div><span>★★★★★</span><small>274K ratings · Trusted by 5,000 game wardens</small></div></div>
+    <p class="ox-qt ox-qc">“we even had a game warden tell us, ‘if that’s what onX says, it’s as good as law’.” <small>App Store review, Aug 2026</small></p>
+    <p class="ox-qt ox-qc">“Very good app and a must have in my opinion.” <small>App Store review, Nov 2026</small></p>
+    <div class="ox-plans" data-hl="3">
+      <button class="ox-plan" data-pick="cp:premium"><span class="ox-fit">YOUR STATE</span><div><b>Premium</b><small>One state or Canada</small></div><strong>$34.99<em>/yr · $2.92/mo</em></strong></button>
+      <button class="ox-plan" data-pick="cp:plus"><div><b>Premium+</b><small>Two states, or one state plus Canada</small></div><strong>$49.99<em>/yr</em></strong></button>
+      <button class="ox-plan" data-pick="cp:elite"><div><b>Elite Nationwide</b><small>All 50 states and Canada</small></div><strong>$99.99<em>/yr</em></strong></button>
+    </div>
+    <button class="ox-cta" data-go="sos">Join the hunters near you</button>
+  </div>
+</section>
+
+<section class="scr sheet ox-sht" data-id="offer" data-ad="a">
   <div class="body ox-ofb">
     <span class="ox-grab"></span>
     <div data-show="tier:elite">
@@ -856,6 +1046,32 @@ html.tourmode .au-tour{display:block;position:fixed;inset:0;z-index:6;pointer-ev
   </div>
 </section>
 
+<section class="scr sheet ox-sht" data-id="offer-b" data-ad="b">
+  <div class="body ox-ofb">
+    <span class="ox-grab"></span>
+    <div>
+      <p class="ox-k">Only need it for the rut?</p>
+      <h2 class="ox-h2">ELITE, ONE MONTH AT A TIME</h2>
+      <div class="ox-ofc" data-hl="4"><div><b>Elite Monthly</b><small>The forecast and every state, this month</small></div><strong>$14.99<em>/mo</em></strong></div>
+    </div>
+    <button class="ox-cta" data-go="sos">Choose this plan</button>
+    <button class="ox-ghost ox-gd" data-go="plans-b">Back to Elite</button>
+  </div>
+</section>
+
+<section class="scr sheet ox-sht" data-id="offer-c" data-ad="c">
+  <div class="body ox-ofb">
+    <span class="ox-grab"></span>
+    <div>
+      <p class="ox-k">Not ready to join?</p>
+      <h2 class="ox-h2">WE’LL TELL YOU WHEN THE RUT MOVES NEAR YOU</h2>
+      <div class="ox-ofc ox-alert" data-hl="4 c3"><span>🔔</span><div><b>Rut alerts for your area</b><small>A notification when hunters within 100 miles report chasing. Your report stays in.</small></div></div>
+    </div>
+    <button class="ox-cta">Turn on rut alerts</button>
+    <button class="ox-ghost ox-gd" data-go="plans-c">Back to memberships</button>
+  </div>
+</section>
+
 <section class="scr ox-dk" data-id="sos">
   <div class="body">
     <p class="ox-k ox-or">You’re in</p>
@@ -870,7 +1086,6 @@ html.tourmode .au-tour{display:block;position:fixed;inset:0;z-index:6;pointer-ev
   </div>
 </section>
 
-
 <section class="scr ox-as" data-id="today" data-aside>
   <div class="body ox-asb ox-tdb">
     <div class="ox-tdnav"><b>‹ Search</b></div>
@@ -881,6 +1096,7 @@ html.tourmode .au-tour{display:block;position:fixed;inset:0;z-index:6;pointer-ev
     </div>
   </div>
 </section>
+
 <!-- SCREENS:END -->
 
       </div></div>
@@ -954,37 +1170,49 @@ html.tourmode .au-tour{display:block;position:fixed;inset:0;z-index:6;pointer-ev
  "app": "onX Hunt",
  "state": {
   "ad": "a",
-  "sp": "whitetail",
-  "area": "all",
-  "tier": "elite",
+  "area": "one",
+  "tier": "premium",
   "tap": "1",
-  "_ar": "all"
+  "_ar": "one",
+  "sit": "am",
+  "bp": "year",
+  "seen": [
+   "scrape",
+   "rubs"
+  ],
+  "cp": "premium"
  },
  "labels": {
-  "sp": {
-   "whitetail": "whitetail",
-   "elk": "elk",
-   "mule": "mule deer",
-   "turkey": "turkey",
-   "waterfowl": "waterfowl",
-   "other": "species"
+  "seen": {
+   "scrape": "scraping",
+   "rubs": "fresh rubs",
+   "spar": "sparring",
+   "chase": "chasing",
+   "none": "nothing yet"
   }
  },
  "chips": {
   "ad": "The ad",
   "today": "Today",
   "welcome": "Welcome",
-  "species": "Species",
-  "state": "Where",
+  "state": "Whose land",
+  "ask-b": "When you sit",
+  "ask-c": "Your sighting",
   "parcel": "First parcel",
-  "plans": "Memberships",
-  "sos": "onX SOS",
-  "offer": "On close"
+  "value-b": "Your forecast",
+  "value-c": "Rut reports",
+  "plans": "Land membership",
+  "plans-b": "Elite",
+  "plans-c": "Hunters’ proof",
+  "offer": "On close",
+  "offer-b": "On close",
+  "offer-c": "On close",
+  "sos": "onX SOS"
  },
  "hero": [
-  "parcel",
+  "value-b",
   "plans",
-  "welcome"
+  "value-c"
  ],
  "outcome": {
   "cr": "+15%",
@@ -993,29 +1221,29 @@ html.tourmode .au-tour{display:block;position:fixed;inset:0;z-index:6;pointer-ev
  "ideas": [
   {
    "screen": "state",
-   "title": "Ask what they hunt and where, then open the map there",
-   "what": "Your listing covers 1.8 billion acres of public land, 161.5 million private properties and 15,880 hunting units, and sells memberships by area. Two taps on the first open (species, then home state, two states or everywhere) let the map open on their ground with their species’ layers.",
+   "title": "Ask the one question their ad left open",
+   "what": "Your three biggest app ads promise different things, so each first question is different: the land ad asks which state’s land to show (it also sets the membership), the forecast ad asks when they can sit, the sightings ad asks what they’ve seen. The species question is skipped: two of the three ads are already about whitetail.",
    "impact": "+10–15%",
    "il": "CR to purchase"
   },
   {
    "screen": "parcel",
-   "title": "Let them tap one parcel before the price",
-   "what": "“Private and public lands: view land ownership, property lines, BLM, National Forest, and more” is your second screenshot. Let the first tap show the boundary, the Deer Movement Forecast and “79 days until the whitetail rut”, with the landowner one step away.",
+   "title": "Show the thing the ad promised before the price",
+   "what": "A parcel with its owner blurred after “Not sure who owns?”, today’s Best at 6 AM with Thursday and Friday locked after “Check This Week’s Forecast”, and the Local Rut Reports their own report joins after “Submit your sightings”. Each is a screen from your own app or ads.",
    "impact": "+5–15%",
    "il": "CR to purchase"
   },
   {
    "screen": "plans",
-   "title": "Put the membership their area needs first",
-   "what": "Premium covers one state ($34.99 a year), Premium+ two ($49.99), Elite all 50 and Canada ($99.99, or $14.99 a month: $179.88 a year, so yearly saves $79.89, 44%). Mark the one their answer fits instead of making them read the tiers.",
+   "title": "A different membership screen for each promise",
+   "what": "Land hunters get “Every owner in your state” with the tier their area needs; forecast hunters get Elite first, since your listing puts the Deer Movement Forecast in Elite ($99.99 a year, 44% less than $179.88 monthly); sightings hunters get your 4.9 stars, game wardens and hunters’ reviews over Premium at $34.99.",
    "impact": "+10–15%",
    "il": "ARPU"
   },
   {
    "screen": "offer",
-   "title": "Answer ✕ with the plan that fits better",
-   "what": "Someone who closes Elite gets Premium for their home state at $34.99; someone who closes Premium gets Elite for one month at $14.99, for an out-of-state trip. Both are in your store; no countdown, no strikethrough.",
+   "title": "Answer ✕ with what that hunter needs",
+   "what": "Closers of the land screen get the plan that fits better ($34.99 Premium or a $14.99 month of Elite); forecast closers get Elite one month at a time, $14.99, through the rut; sightings closers get rut alerts for their area instead of a price, so they come back when the rut moves.",
    "impact": "+5–10%",
    "il": "CR from closers"
   },
@@ -1041,40 +1269,35 @@ html.tourmode .au-tour{display:block;position:fixed;inset:0;z-index:6;pointer-ev
   "welcome": {
    "idea": 0,
    "t": "Your headline, picked by the ad",
-   "why": "“Private and public lands” after the land ad, “Know when to hunt” after the forecast ad, both your own screenshots; a sightings headline after the third."
-  },
-  "species": {
-   "idea": 0,
-   "t": "What they hunt",
-   "why": "One tap that sets their map layers and forecasts; after the two deer ads, whitetail is already picked. It sets up idea 1."
+   "why": "“Private and public lands” after the land ad, “Know when to hunt” after the forecast ad, a sightings headline after the third. From here each ad opens its own version."
   },
   "state": {
    "idea": 1,
-   "t": "Ask where, then open the map there",
-   "why": "<b>Try</b> asking species and area on the first open and opening the map on that ground, <b>because</b> your memberships are sold by area and a hunter thinks in states, not tiers.",
+   "t": "Version A: ask whose land, first",
+   "why": "<b>Try</b> asking which state’s land they want to see before anything else, <b>because</b> the land ad sold property lines, which you sell by state, so one answer opens the map and picks the membership.",
    "iv": "CR +10–15%",
    "il": "to purchase",
-   "also": "The answer also picks the membership on idea 3."
+   "also": "Version A · Land first. No species question: the ad was about land."
   },
   "parcel": {
    "idea": 2,
-   "t": "One parcel before the price",
-   "why": "<b>Try</b> letting the first tap show a boundary and the Deer Movement Forecast, with the landowner behind membership, <b>because</b> property lines are what your listing leads with.",
+   "t": "Version A: the owner, blurred",
+   "why": "<b>Try</b> one free parcel tap that shows the boundary and hunt unit with the landowner blurred, <b>because</b> the ad asked “Not sure who owns?”; answer half of it before the price.",
    "iv": "CR +5–15%",
    "il": "to purchase",
-   "also": "The card is yours, from your App Store screenshot; we blurred the landowner. Its first line follows the ad: whose land, this week’s forecast, or what’s been reported."
+   "also": "The card is yours, from your App Store screenshot; we blurred the landowner."
   },
   "plans": {
    "idea": 3,
-   "t": "The membership their area needs, first",
-   "why": "<b>Try</b> marking the tier their answer fits and showing Elite yearly against $179.88 monthly, <b>because</b> three tiers sold by area ask a new hunter to do the maths.",
+   "t": "Version A: sell landowner names",
+   "why": "<b>Try</b> “Every owner in your state” with the membership their area needs marked, <b>because</b> land hunters buy one state’s property lines, and $34.99 a year reads small next to a trespass ticket.",
    "iv": "ARPU +10–15%",
    "il": "",
-   "also": "Also here: your 4.9 stars from 274K ratings and “Trusted by 5,000 game wardens”."
+   "also": "The review is a real 5-star App Store review from July 2026."
   },
   "offer": {
    "idea": 4,
-   "t": "The plan that fits better, on close",
+   "t": "Version A: the plan that fits better",
    "why": "<b>Try</b> Premium at $34.99 for those who close Elite and a $14.99 month of Elite for those who close Premium, <b>because</b> a ✕ often means the wrong size, not no.",
    "iv": "CR +5–10%",
    "il": "from closers"
@@ -1085,6 +1308,69 @@ html.tourmode .au-tour{display:block;position:fixed;inset:0;z-index:6;pointer-ev
    "why": "<b>Try</b> offering the $49.99 SOS add-on once, after the membership, <b>because</b> they just chose where they’ll hunt, often alone and out of cell range.",
    "iv": "ARPU +5–10%",
    "il": ""
+  },
+  "ask-b": {
+   "idea": 1,
+   "t": "Version B: ask when they can sit",
+   "why": "<b>Try</b> one question, mornings, evenings or whenever deer move, <b>because</b> the forecast ad promised the right time, so the first answer should shape the first forecast they see.",
+   "iv": "CR +5–10%",
+   "il": "to purchase",
+   "also": "Version B · Forecast first. Whitetail is set: the ad was about deer movement."
+  },
+  "ask-c": {
+   "idea": 1,
+   "t": "Version C: ask for their sighting",
+   "why": "<b>Try</b> “What deer behavior have you seen today?”, your own Local Rut Reports question, as the first screen, <b>because</b> the ad asked them to submit sightings, and a hunter who has given a report has a reason to stay.",
+   "iv": "CR +5–10%",
+   "il": "to purchase",
+   "also": "Version C · Reports first. The four behaviors are the ones in your Rut Reports."
+  },
+  "value-b": {
+   "idea": 2,
+   "t": "Version B: today’s forecast, free",
+   "why": "<b>Try</b> today’s Best at 6 AM and movement for their spot free, with Thursday and Friday locked, <b>because</b> the ad’s button was “Check This Week’s Forecast”; show this week, and sell the rest.",
+   "iv": "CR +5–15%",
+   "il": "to purchase",
+   "also": "Chasing Phase, Best at 6 AM, 85% High and the hourly card are your first App Store screenshot; 56%, 56%, 53% Moderate are from your forecast ad."
+  },
+  "value-c": {
+   "idea": 2,
+   "t": "Version C: the reports their report joins",
+   "why": "<b>Try</b> showing your Local Rut Reports with their report counted next to hunters within 100 miles, <b>because</b> seeing other hunters’ reports proves the promise of the ad before any price.",
+   "iv": "CR +5–15%",
+   "il": "to purchase",
+   "also": "Every line on this screen is from your sightings ad, word for word, including “74 days until the whitetail rut kicks off here”."
+  },
+  "plans-b": {
+   "idea": 3,
+   "t": "Version B: Elite first, the tier with the forecast",
+   "why": "<b>Try</b> Elite yearly first and selected, against $179.88 for twelve months of Elite monthly, <b>because</b> your listing puts the Deer Movement Forecast in Elite, and opening on Premium sells them a plan without what they came for.",
+   "iv": "ARPU +10–15%",
+   "il": "",
+   "also": "Premium stays one line below, for hunters who only want one state’s maps."
+  },
+  "plans-c": {
+   "idea": 3,
+   "t": "Version C: other hunters’ word, first",
+   "why": "<b>Try</b> leading with 4.9 stars from 274K ratings, game wardens and two real reviews, with Premium for their state selected, <b>because</b> a hunter who came for other hunters’ reports trusts other hunters.",
+   "iv": "CR +5–10%",
+   "il": "to purchase",
+   "also": "Both reviews are real 5-star App Store reviews, August and November 2026."
+  },
+  "offer-b": {
+   "idea": 4,
+   "t": "Version B: Elite, one month at a time",
+   "why": "<b>Try</b> Elite monthly at $14.99 when someone closes the yearly, <b>because</b> a forecast hunter may only want it through the rut, and a month is a smaller yes than a year.",
+   "iv": "CR +5–10%",
+   "il": "from closers"
+  },
+  "offer-c": {
+   "idea": 4,
+   "t": "Version C: rut alerts instead of a price",
+   "why": "<b>Try</b> offering rut alerts for their area when they close, <b>because</b> a sightings hunter who says no today comes back when hunters near them report chasing, and that’s the moment to ask again.",
+   "iv": "CR +5–10%",
+   "il": "from closers",
+   "also": "Alerts on Local Rut Reports are our proposal; we haven’t seen them in your app."
   }
  },
  "langs": [],
@@ -1104,11 +1390,14 @@ html.tourmode .au-tour{display:block;position:fixed;inset:0;z-index:6;pointer-ev
     "d": 3000,
     "st": {
      "ad": "a",
-     "sp": "",
      "area": "",
      "tier": "premium",
      "tap": "0",
-     "_ar": ""
+     "_ar": "",
+     "sit": "am",
+     "bp": "year",
+     "seen": [],
+     "cp": "premium"
     },
     "tap": [
      ".ox-adcta",
@@ -1117,36 +1406,25 @@ html.tourmode .au-tour{display:block;position:fixed;inset:0;z-index:6;pointer-ev
    },
    {
     "id": "welcome",
-    "d": 2700,
+    "d": 2500,
     "tap": [
      ".ox-cta",
-     2200
-    ]
-   },
-   {
-    "id": "species",
-    "d": 1700,
-    "tap": [
-     "[data-pick=\"sp:elk\"]",
-     1300
+     2000
     ]
    },
    {
     "id": "state",
-    "d": 1500,
-    "st": {
-     "sp": "elk"
-    },
+    "d": 1700,
     "tap": [
-     "[data-pick=\"area:all\"]",
-     1100
+     "[data-pick=\"area:one\"]",
+     1300
     ]
    },
    {
     "id": "state",
     "d": 1200,
     "st": {
-     "area": "all"
+     "area": "one"
     },
     "tap": [
      ".ox-cta",
@@ -1166,27 +1444,27 @@ html.tourmode .au-tour{display:block;position:fixed;inset:0;z-index:6;pointer-ev
    },
    {
     "id": "parcel",
-    "d": 3000,
+    "d": 2800,
     "st": {
      "tap": "1"
     },
     "tap": [
      "[data-show=\"tap:1\"] .ox-cta",
-     2600
+     2400
     ]
    },
    {
     "id": "plans",
-    "d": 3600,
+    "d": 3200,
     "st": {
-     "tier": "elite",
-     "_ar": "all"
+     "tier": "premium",
+     "_ar": "one"
     },
-    "pop": ".ox-save"
+    "pop": ".ox-qt"
    },
    {
     "id": "plans",
-    "d": 1300,
+    "d": 1200,
     "tap": [
      ".ox-x",
      800
@@ -1194,15 +1472,35 @@ html.tourmode .au-tour{display:block;position:fixed;inset:0;z-index:6;pointer-ev
    },
    {
     "id": "offer",
-    "d": 3000
+    "d": 2600
+   },
+   {
+    "id": "value-b",
+    "d": 3400,
+    "st": {
+     "ad": "b",
+     "sit": "am"
+    },
+    "pop": ".ox-3d"
+   },
+   {
+    "id": "value-c",
+    "d": 3400,
+    "st": {
+     "ad": "c",
+     "seen": [
+      "scrape",
+      "rubs"
+     ]
+    },
+    "pop": ".ox-rr"
    },
    {
     "id": "sos",
-    "d": 3000
-   },
-   {
-    "id": "sos",
-    "d": 3600,
+    "d": 3000,
+    "st": {
+     "ad": "a"
+    },
     "end": true
    }
   ],
@@ -1215,38 +1513,33 @@ html.tourmode .au-tour{display:block;position:fixed;inset:0;z-index:6;pointer-ev
    "welcome": {
     "k": "Context",
     "t": "Your headline, picked by the ad",
-    "l": "“Private and public lands” after the land ad."
-   },
-   "species": {
-    "k": "Context",
-    "t": "What they hunt",
-    "l": "Sets the map layers and forecasts."
+    "l": "Version A opens on “Private and public lands”."
    },
    "state": {
     "n": 1,
-    "t": "Ask where they hunt",
-    "l": "Then open the map on their ground.",
+    "t": "Ask whose land, first",
+    "l": "One answer opens the map and picks the membership.",
     "o": "+10–15%",
     "ol": "CR to purchase"
    },
    "parcel": {
     "n": 2,
-    "t": "One parcel before the price",
-    "l": "Boundary and forecast free, landowner with membership.",
+    "t": "The owner, blurred",
+    "l": "Boundary free, landowner with membership.",
     "o": "+5–15%",
     "ol": "CR to purchase"
    },
    "plans": {
     "n": 3,
-    "t": "Their membership, first",
-    "l": "Elite yearly saves $79.89 against monthly.",
+    "t": "Sell landowner names",
+    "l": "“Every owner in your state”, Premium marked.",
     "o": "+10–15%",
     "ol": "ARPU"
    },
    "offer": {
     "n": 4,
     "t": "The plan that fits better",
-    "l": "Premium for one state, $34.99.",
+    "l": "A month of Elite for an out-of-state trip.",
     "o": "+5–10%",
     "ol": "CR from closers"
    },
@@ -1256,6 +1549,20 @@ html.tourmode .au-tour{display:block;position:fixed;inset:0;z-index:6;pointer-ev
     "l": "$49.99 a year, 24/7 rescue.",
     "o": "+5–10%",
     "ol": "ARPU"
+   },
+   "value-b": {
+    "n": 2,
+    "t": "Version B: today’s forecast, free",
+    "l": "Best at 6 AM; Thursday and Friday with Elite.",
+    "o": "+5–15%",
+    "ol": "CR to purchase"
+   },
+   "value-c": {
+    "n": 2,
+    "t": "Version C: their report, counted",
+    "l": "Local Rut Reports from hunters within 100 miles.",
+    "o": "+5–15%",
+    "ol": "CR to purchase"
    }
   }
  },
@@ -1288,6 +1595,10 @@ html.tourmode .au-tour{display:block;position:fixed;inset:0;z-index:6;pointer-ev
     {
      "dt": "“Trusted by 5,000 game wardens”, 1.8 billion acres, 161.5 million private properties, 15,880 hunting units",
      "dd": "Your App Store description, verbatim."
+    },
+    {
+     "dt": "Three App Store reviews",
+     "dd": "5-star US App Store reviews, verbatim: “it really helps to know who the land owners are to make it easier to get permission to hunt” (6 Jul 2026), “we even had a game warden tell us, ‘if that’s what onX says, it’s as good as law’.” (28 Aug 2026) and “Very good app and a must have in my opinion.” (4 Nov 2026)."
     }
    ]
   },
@@ -1297,6 +1608,18 @@ html.tourmode .au-tour{display:block;position:fixed;inset:0;z-index:6;pointer-ev
     {
      "dt": "Your Meta ads",
      "dd": "<a href=\"https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=ALL&amp;view_all_page_id=117492868268262&amp;search_type=page&amp;media_type=all\">Meta Ad Library</a>, the onX Hunt page, all countries, active on 11 Nov 2026: 128 ads in 328 versions. The three on the phones, word for word: “Use onX Hunt to contact landowners…” (video “Not sure who owns”), “Stack the odds this season…” and “Submit your sightings and see what others in your area are seeing…”, each linking to your App Store page (id672902340). Frames from the ads are theirs; counts are ad versions, not spend."
+    },
+    {
+     "dt": "Version B’s forecast screen",
+     "dd": "“Chasing Phase”, “Best at 6 AM · 85% High” and the 6 AM / 7 AM card (42°, 2 mph) are your first App Store screenshot; “3-Day Deer Movement Forecast · Based on local conditions” and 56%, 56%, 53% Moderate are from your forecast ad’s video. They are sample values from your own creative, not a forecast for a real place. Your listing names the Deer Movement Forecast among Elite’s features."
+    },
+    {
+     "dt": "Version C’s Rut Reports screen",
+     "dd": "From your sightings ad’s video, word for word: “74 days until the whitetail rut kicks off here”, the pre-rut text, “Pre-rut · Oct 22 – 31 · Next: Seeking”, the four behaviors, “2 Local hunters’ reports last 3 days”, “What deer behavior have you seen today?”, “Add report for this area”, the 100-mile summary line and both Top tactics."
+    },
+    {
+     "dt": "Version A’s land screens",
+     "dd": "“Owner, tax address and acreage” follows the landowner card in your land ad’s video; “property lines with landowner names”, 161.5 million private properties, 1.8 billion acres and GMUs/Hunting Units are your App Store description."
     },
     {
      "dt": "“Know when to hunt”, “Private and public lands”, the parcel card, Deer Movement Forecast, “79 days until the whitetail rut kicks off here”",
@@ -1341,6 +1664,10 @@ html.tourmode .au-tour{display:block;position:fixed;inset:0;z-index:6;pointer-ev
      "dd": "onX Hunt isn’t in any recording library we use, so every screen is a proposal in your design, built from the listing. A screen recording (fresh install → first map → membership) lets us show your flow today, side by side."
     },
     {
+     "dt": "Three versions are our proposal",
+     "dd": "The question each version asks (whose land, when you sit, what you’ve seen), what it locks, and the rut alerts offered on close are proposals. We don’t know whether Local Rut Reports or Top tactics need a membership, so version C locks neither."
+    },
+    {
      "dt": "Free trial",
      "dd": "One of your Meta land ads says “Experience property boundaries and more with a free 7-day trial.” The listing doesn’t say who gets it or on which membership, so the prototype shows none."
     },
@@ -1355,16 +1682,29 @@ html.tourmode .au-tour{display:block;position:fixed;inset:0;z-index:6;pointer-ev
 </script>
 
 <script>
-/* onX Hunt hooks: the membership on the plans screen follows the area answer (one state → Premium,
-   two → Premium+, everywhere → Elite); the parcel tap starts fresh on entry (stills show it tapped);
-   the species question starts empty after the land ad and with whitetail picked after the two deer ads. */
+/* onX Hunt hooks, three versions (data-ad screens):
+   A land: area answer picks the membership on "plans" (one state → Premium, two → Premium+, everywhere → Elite);
+   the parcel tap starts fresh on entry (stills show it tapped).
+   B forecast: Elite yearly preselected on plans-b. C sightings: the report starts empty on entry; Premium preselected. */
 var OX_TIER = {one: 'premium', two: 'plus', all: 'elite'};
 window.onEnter = function(id, S){
   if (id === 'plans' && S._ar !== S.area) { S.tier = OX_TIER[S.area] || 'premium'; S._ar = S.area; sync(); }
   if (id === 'parcel' && !SHOT) { S.tap = '0'; sync(); }
-  if (id === 'species' && !SHOT) { S.sp = S.ad === 'a' ? '' : 'whitetail'; sync(); }
-  if (id === 'state' && !S.sp) { S.sp = 'other'; sync(); }
+  if (id === 'ask-c' && !SHOT) { S.seen = []; sync(); }
+  if (id === 'value-c' && !(S.seen || []).length) { S.seen = ['none']; sync(); }
+  if (id === 'ask-c' && SHOT && !(S.seen || []).length) { S.seen = ['scrape']; sync(); }
 };
+/* shortlist and hero links: an idea's A-screen opens the current ad's own version of it; a B/C screen switches the ad */
+var OX_VAR = {state: {b: 'ask-b', c: 'ask-c'}, parcel: {b: 'value-b', c: 'value-c'}, plans: {b: 'plans-b', c: 'plans-c'}, offer: {b: 'offer-b', c: 'offer-c'}};
+document.addEventListener('DOMContentLoaded', function(){   /* the engine is defined after this script */
+  var oxJumpTo = window.jumpTo;
+  window.jumpTo = function(id){
+    if (OX_VAR[id] && OX_VAR[id][S.ad]) id = OX_VAR[id][S.ad];
+    var a = scr[id] && scr[id].dataset.ad;
+    if (a && a.split(' ').indexOf(S.ad) < 0) { S.ad = a.split(' ')[0]; sync(); }
+    oxJumpTo(id);
+  };
+});
 </script>
 <script>
 /* ============ engine — generic, do not fork per app ============ */
@@ -1373,6 +1713,11 @@ var S = C.state, scr = {}, ORDER = [], hist = [], cur = null, Q = location.searc
 var SHOT = /[?&](shot|phone|tour)\b/.test(Q), HERO = /[?&]hero\b/.test(Q);
 /* a screen with data-aside (e.g. the paywall TODAY for the side-by-side) renders for stills but is not part of the flow */
 document.querySelectorAll('.scr').forEach(function(s){ scr[s.dataset.id] = s; if (!s.hasAttribute('data-aside')) ORDER.push(s.dataset.id); });
+/* PER-AD FLOWS: a screen with data-ad="a b" is only in those ads' flows; data-go="next" = next screen of this flow */
+var ALL = ORDER.slice();
+function flowOrder(){ return ALL.filter(function(id){ var a = scr[id].dataset.ad; return !a || a.split(' ').indexOf(String(S.ad)) > -1; }); }
+ORDER = flowOrder();
+function nextOf(t){ if (t !== 'next') return t; var i = ORDER.indexOf(cur); return ORDER[i + 1] || ORDER[i]; }
 if (/[?&]shot\b/.test(Q)) document.documentElement.classList.add('shot');
 if (/[?&]phone\b/.test(Q)) document.documentElement.classList.add('shot', 'phoneonly');
 if (/[?&]clear\b/.test(Q)) document.documentElement.classList.add('clear');
@@ -1403,6 +1748,7 @@ function setLang(l){
 function lab(key){ var v = S[key]; var L = C.labels[key]; if (Array.isArray(v)) return v.map(function(x){ return L && L[x] || x; }).join(', '); return (L && L[v]) || v; }
 function sync(){
   applyLang();
+  var o = flowOrder(); if (o.join() !== ORDER.join()) { ORDER = o; var cc = document.getElementById('chips'); if (cc) cc.innerHTML = ''; if (cur) { paint(); return; } }
   document.querySelectorAll('[data-bind]').forEach(function(el){
     var b = el.dataset.bind, m = b.split(':');
     el.textContent = m[0] === 'label' ? lab(m[1]) : m[0] === 'count' ? (S[m[1]] || []).length : (S[b] == null ? '' : S[b]);
@@ -1468,10 +1814,10 @@ document.addEventListener('click', function(e){
   var L = e.target.closest('[data-setlang]'); if (L){ setLang(L.dataset.setlang); return; }
   if (e.target.closest('[data-langtoggle]') && LANGS.length > 1){ var k = LANGS.findIndex(function(x){ return x.code === S.lang; }); setLang(LANGS[(k + 1) % LANGS.length].code); return; }
   var el = e.target.closest('[data-go],[data-back],[data-pick],[data-toggle]'); if (!el) return;
-  if (el.dataset.pick){ var p = el.dataset.pick.split(':'); S[p[0]] = p[1]; sync(); if (el.dataset.advance) setTimeout(function(){ go(el.dataset.advance); }, 170); return; }
+  if (el.dataset.pick){ var p = el.dataset.pick.split(':'); S[p[0]] = p[1]; sync(); if (el.dataset.advance) setTimeout(function(){ go(nextOf(el.dataset.advance)); }, 170); return; }
   if (el.dataset.toggle){ var q = el.dataset.toggle.split(':'), a = S[q[0]] = S[q[0]] || [], i = a.indexOf(q[1]); if (i > -1) a.splice(i, 1); else a.push(q[1]); sync(); return; }
   if ('back' in el.dataset) return back();
-  go(el.dataset.go);
+  go(nextOf(el.dataset.go));
 });
 document.querySelectorAll('[data-input]').forEach(function(inp){
   inp.value = S[inp.dataset.input] || ''; inp.addEventListener('input', function(){ S[inp.dataset.input] = inp.value.trim() || 'there'; sync(); });
@@ -1651,6 +1997,11 @@ function tourInit(){
   var rows = {}; (D.rows || []).forEach(function(r){ rows[r.id] = r; });
   var caps = D.stepCaps || {}, steps = document.getElementById('duoSteps'), tbl = document.getElementById('duoTbl');
   var stage = document.getElementById('duoStage');
+  /* per-ad versions: a step may name a different screen per flow ({id, label, ids:{a:'pw-a', b:'pw-b'}}) */
+  var STEPS = (D.steps || []).filter(function(s){ return s.id; });
+  function sid(s, k){ return (s.ids && s.ids[k]) || s.id; }
+  function stepOf(k, scrId){ return STEPS.find(function(s){ return sid(s, k) === scrId; }); }
+  function stepFor(scrId){ for (var i = 0; i < F.length; i++) { var s = stepOf(F[i].k, scrId); if (s) return s; } return null; }
 
   function cw(i){ return W[i] && W[i].contentWindow && W[i].contentWindow.jump ? W[i].contentWindow : null; }
   function label(id){ var s = (D.steps || []).find(function(x){ return x.id === id; }); if (s && s.label) return s.label; var w = cw(0); return (w && w.C.chips && w.C.chips[id]) || id; }
@@ -1665,15 +2016,19 @@ function tourInit(){
     });
     var sc = document.getElementById('duoStepCap'); if (sc) sc.innerHTML = shared && id === 'today' ? shared : '';
   }
-  function both(id, n){
-    busy = true; F.forEach(function(f, i){ var w = cw(i); if (w && w.cur !== id) w.jump(id); }); busy = false; paintStep(id);
-    if (n) setTimeout(function(){ F.forEach(function(f, i){ var w = cw(i); if (w && w.pulseIdea) w.pulseIdea(n); }); }, 380);
+  function both(id, n, only){
+    var st = STEPS.find(function(s){ return s.id === id; }) || stepFor(id);
+    busy = true; F.forEach(function(f, i){ var w = cw(i), t = st ? sid(st, f.k) : id; if (w && w.cur !== t) w.jump(t); }); busy = false; paintStep(st ? st.id : id);
+    if (n) setTimeout(function(){ F.forEach(function(f, i){ var w = cw(i); if (w && w.pulseIdea && (!only || only === f.k)) w.pulseIdea(n); }); }, 380);
+    root.querySelectorAll('[data-duorec]').forEach(function(b){ b.classList.toggle('on', !!only && b.dataset.duorec === only + ':' + String(n).slice(1)); });
     root.querySelectorAll('[data-duoidea]').forEach(function(b){ b.classList.toggle('on', +b.dataset.duoidea === n); });
   }
   function follow(i, id){
     if (busy) return;
-    busy = true; F.forEach(function(f, j){ var w = cw(j); if (j !== i && w && w.cur !== id) w.jump(id); }); busy = false;
-    paintStep(id);
+    var st = stepOf(F[i].k, id);
+    busy = true; F.forEach(function(f, j){ var w = cw(j), t = st ? sid(st, f.k) : id; if (j !== i && w && w.cur !== t) w.jump(t); }); busy = false;
+    paintStep(st ? st.id : id);
+    root.querySelectorAll('[data-duorec]').forEach(function(b){ b.classList.remove('on'); });
     root.querySelectorAll('[data-duoidea]').forEach(function(b){ b.classList.remove('on'); });
   }
   var ready_n = 0;
@@ -1711,6 +2066,14 @@ function tourInit(){
   var ib = document.getElementById('duoIdeas');
   if (ib && window.C && C.ideas) ib.innerHTML = '<span class="au-duo-sep">The five ideas</span>' + C.ideas.map(function(d, i){
     return '<button type="button" data-duoidea="' + (i + 1) + '" data-scr="' + d.screen + '"><i>' + (i + 1) + '</i>' + d.title + '</button>'; }).join('');
+  /* per-ad recommendations under each phone: flows[k].recs = [{step, title, why, impact, il}], pulse data-hl="<k><n>" */
+  F.forEach(function(f){
+    var box = document.getElementById('duoRec' + f.k); if (!box || !f.recs) return;
+    box.innerHTML = (f.version ? '<p class="au-rec-v">' + f.version + '</p>' : '') + f.recs.map(function(r, i){
+      return '<button type="button" class="au-rec" data-duorec="' + f.k + ':' + (i + 1) + '" data-step="' + r.step + '"><i>' + f.k.toUpperCase() + (i + 1) + '</i>' +
+        '<span><b>' + r.title + '</b><em>' + r.why + '</em></span>' + (r.impact ? '<mark>' + r.impact + '<small>' + (r.il || '') + '</small></mark>' : '') + '</button>';
+    }).join('');
+  });
   /* the table: one row per step that differs */
   if (tbl) {
     var h = '<caption>' + D.tableTitle + '<span>' + D.tableSub + '</span></caption><thead><tr><th>Screen</th>' +
@@ -1728,6 +2091,7 @@ function tourInit(){
   root.addEventListener('click', function(e){
     var b = e.target.closest('[data-duo]'); if (b) { both(b.dataset.duo); toStage(); return; }
     var n = e.target.closest('[data-duoidea]'); if (n) { both(n.dataset.scr, +n.dataset.duoidea); return; }
+    var rc = e.target.closest('[data-duorec]'); if (rc) { var q = rc.dataset.duorec.split(':'); both(rc.dataset.step, q[0] + q[1], q[0]); return; }
     var g = e.target.closest('[data-duogo]'); if (g) { both(F.length && cw(0) ? cw(0).ORDER[0] : 'ad'); toStage(g.dataset.duogo); return; }
     var t = e.target.closest('[data-duoone]');
     if (t) { stage.dataset.one = t.dataset.duoone; root.querySelectorAll('[data-duoone]').forEach(function(x){ x.classList.toggle('on', x === t); }); }
@@ -1742,5 +2106,117 @@ function tourInit(){
 })();
 /* DUO:END */
 </script>
+<script>
+/* MOTION:START — hero words + icon, scroll reveal, count-up, and the live walkthrough in the ad phones. Config: #motionData. */
+(function run(){
+  if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', run); return; }
+  var Q = location.search, H = document.documentElement;
+  if (/[?&](embed|shot|phone|tour|hero|app)\b/.test(Q) || H.classList.contains('appmode')) return;
+  var el = document.getElementById('motionData'); if (!el) return;
+  var M = JSON.parse(el.textContent), RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function $(s, r){ return (r || document).querySelector(s); }
+  function $$(s, r){ return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
+
+  /* hero: the app's colour, its own words drifting across, the icon bobbing, a stats strip under it */
+  var hero = $('.au-top-hero');
+  if (hero && M.hero) {
+    hero.classList.add('au-mx');
+    var w = M.hero.words || [], h = '';
+    w.forEach(function(t, k){ h += '<span style="top:' + (4 + k * (88 / Math.max(w.length, 1))).toFixed(1) + '%;animation-duration:' + (16 + (k * 7) % 11) + 's;animation-delay:-' + ((k * 3.7) % 16).toFixed(1) + 's;font-size:' + (18 + (k * 5) % 16) + 'px">' + t + '</span>'; });
+    var d = document.createElement('div'); d.className = 'au-mx-words'; d.setAttribute('aria-hidden', 'true'); d.innerHTML = h; hero.insertBefore(d, hero.firstChild);
+    if (M.hero.icon) { var im = document.createElement('img'); im.className = 'au-mx-icon'; im.src = M.hero.icon; im.alt = ''; hero.appendChild(im); }
+    if (M.hero.stats) { var st = document.createElement('div'); st.className = 'au-mx-stats';
+      st.innerHTML = M.hero.stats.map(function(s){ return '<div><b>' + s[0] + '</b><span>' + s[1] + '</span></div>'; }).join(''); hero.parentNode.insertBefore(st, hero.nextSibling); }
+  }
+
+  /* count-up for stats and outcome numbers */
+  function countUp(n){
+    var t = n.textContent, m = /^([^\d]*)([\d.,]+)(.*)$/.exec(t); if (!m || RM) return;
+    var raw = m[2].replace(/,/g, ''), v = parseFloat(raw), dec = (raw.split('.')[1] || '').length, t0 = performance.now();
+    if (!isFinite(v) || v === 0) return;
+    (function f(){ var k = Math.min(1, (performance.now() - t0) / 900), e = 1 - Math.pow(1 - k, 3), x = (v * e).toFixed(dec);
+      if (m[2].indexOf(',') > -1) x = Number(x).toLocaleString('en-US'); n.textContent = m[1] + x + m[3]; if (k < 1) requestAnimationFrame(f); else n.textContent = t; })();
+  }
+  /* scroll reveal */
+  var rv = $$(M.reveal || '.au-sec .au-wrap > *, .au-idea, .au-pf-c, .au-mx-stats div');
+  rv.forEach(function(n){ n.classList.add('au-rv'); });
+  var cnt = $$(M.count || '.au-mx-stats b, .au-duo-stats b, .au-stat b');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (!e.isIntersecting) return; io.unobserve(e.target);
+      e.target.classList.add('au-in'); if (e.target._count) countUp(e.target); }); }, {rootMargin: '0px 0px -8% 0px'});
+    rv.forEach(function(n){ io.observe(n); });
+    cnt.forEach(function(n){ n._count = 1; io.observe(n); });
+  } else rv.forEach(function(n){ n.classList.add('au-in'); });
+
+  /* live walkthrough inside the three ad phones */
+  var stage = document.getElementById('duoStage'), data = document.getElementById('duoData'); if (!stage || !data) return;
+  var D = JSON.parse(data.textContent), F = D.flows, W = M.walk || {}, walk = {on: false, tok: 0};
+  var LABEL = W.button || '▶ Play the walkthrough in the phones';
+  var bar = document.createElement('div'); bar.className = 'au-walk';
+  bar.innerHTML = '<button type="button" id="walkBtn">' + LABEL + '</button><div class="au-walkbar" id="walkBar"><span id="walkTx"></span><i><b id="walkPr"></b></i></div>';
+  var head = $('#duo .au-duo-h'); head.parentNode.insertBefore(bar, head.nextSibling);
+  $$('.au-duo-fr').forEach(function(fr){ var f = document.createElement('div'); f.className = 'au-finger'; fr.appendChild(f); });
+  function frames(){ return F.map(function(f){ return $('#duoFr' + f.k + ' iframe'); }); }
+  function wait(ms, tk){ return new Promise(function(res, rej){ setTimeout(function(){ tk === walk.tok ? res() : rej('stop'); }, ms); }); }
+  function cap(t, p){ $('#walkTx').innerHTML = t; $('#walkPr').style.width = p + '%'; }
+  function vis(x){ return !!x && x.getClientRects().length > 0 && getComputedStyle(x).visibility !== 'hidden'; }
+  function target(i, which){
+    var fr = frames()[i], w = fr && fr.contentWindow; if (!w || !w.scr || !w.cur) return null;
+    var s = w.scr[w.cur], own = (W.taps || {})[w.cur], list = [];
+    if (own) list = (Array.isArray(own) ? own : [own]).map(function(q){ return $(q, s); });
+    else {
+      var picks = $$('[data-pick]:not([data-pick^="ad:"]),[data-toggle]', s).filter(vis);
+      if (picks.length && !picks.some(function(p){ return p.classList.contains('on'); })) list.push(picks[0]);
+      list.push($$('[data-go]:not([data-back]),[data-advance]', s).filter(vis).pop());
+    }
+    return list.filter(vis)[which] || null;
+  }
+  async function tap(i, el, tk){
+    var fr = frames()[i]; if (!el || !fr) return;
+    var box = fr.parentNode, f = $('.au-finger', box);
+    var b = box.getBoundingClientRect(), fb = fr.getBoundingClientRect(), sc = fb.width / fr.offsetWidth, r = el.getBoundingClientRect();
+    f.classList.add('on'); f.style.left = (fb.left - b.left + (r.left + r.width / 2) * sc) + 'px'; f.style.top = (fb.top - b.top + (r.top + r.height / 2) * sc) + 'px';
+    await wait(420, tk); f.classList.add('press'); await wait(130, tk); f.classList.remove('press');
+    /* answers are set in the phone's own state (no navigation); buttons are only pressed: the step bar moves every
+       phone together, so the three versions never race each other */
+    var w = fr.contentWindow, pk = el.dataset.pick, tg = el.dataset.toggle;
+    if (pk) { var p = pk.split(':'); w.S[p[0]] = p[1]; w.sync(); }
+    else if (tg) { var q = tg.split(':'), a = w.S[q[0]] = w.S[q[0]] || []; if (a.indexOf(q[1]) < 0) a.push(q[1]); w.sync(); }
+    await wait(120, tk);
+  }
+  function plain(s){ var d = document.createElement('div'); d.innerHTML = s || ''; return d.textContent; }
+  async function start(){
+    stop(); var tk = ++walk.tok; walk.on = true; $('#walkBtn').classList.add('on'); $('#walkBtn').textContent = '■ Stop'; $('#walkBar').classList.add('on'); bar.classList.add('on');
+    var steps = (D.steps || []).filter(function(s){ return s.id && (W.skip || ['today']).indexOf(s.id) < 0; }), n = steps.length;
+    var rows = {}; (D.rows || []).forEach(function(r){ rows[r.id] = r; });
+    try {
+      /* the phones' tops sit just under the sticky caption bar */
+      scrollTo({top: stage.getBoundingClientRect().top + scrollY - 190, behavior: RM ? 'auto' : 'smooth'});
+      for (var k = 0; k < n; k++) {
+        var s = steps[k], btn = $('#duoSteps button[data-id="' + s.id + '"]'); if (btn) btn.click();
+        cap((W.captions || {})[s.id] || ('<b>' + (btn ? btn.textContent : s.id) + '.</b> ' + (rows[s.id] ? 'Each ad gets its own version of this screen.' : (plain((D.stepCaps || {})[s.id]) || 'Same screen for every ad.'))), Math.round((k + 1) / (n + 1) * 100));
+        await wait(k ? 1500 : 2200, tk);
+        if (k === n - 1) break;
+        /* each phone taps through its own screen: an answer first if nothing is picked, then its button */
+        for (var pass = 0; pass < 2; pass++) {
+          var els = F.map(function(f, i){ return target(i, pass); });
+          if (!els.some(Boolean)) break;
+          await Promise.all(els.map(function(e, i){ return tap(i, e, tk); }));
+          await wait(300, tk);
+        }
+        $$('.au-finger').forEach(function(f){ f.classList.toggle('on', false); });
+      }
+      cap(W.end || 'That’s the three versions. Tap any phone, or a recommendation under it.', 100); await wait(2600, tk);
+    } catch (e) {}
+    stop();
+  }
+  function stop(){ if (!walk.on) return; walk.on = false; walk.tok++; $('#walkBtn').classList.remove('on'); $('#walkBtn').textContent = LABEL; $('#walkBar').classList.remove('on'); bar.classList.remove('on'); $$('.au-finger').forEach(function(f){ f.classList.remove('on'); }); }
+  $('#walkBtn').addEventListener('click', function(){ walk.on ? stop() : start(); });
+  document.addEventListener('pointerdown', function(e){ if (walk.on && e.isTrusted && !e.target.closest('#walkBtn') && e.target.closest('#duo')) stop(); }, true);
+  $$('[data-walk]').forEach(function(b){ b.addEventListener('click', function(e){ e.preventDefault(); start(); }); });
+})();
+/* MOTION:END */
+</script>
+<script type="application/json" id="motionData">{"hero": {"words": ["Not sure who owns? onX Hunt app has you covered", "Stack the odds this season", "Submit your sightings and see what others in your area are seeing", "Know every WMA boundary before you go.", "Deer Movement Forecast", "Rut Calendar", "Compass Mode", "Local Rut Reports", "Private land boundaries"], "icon": "assets/brand/appstore-icon.jpg", "stats": [["★ 4.9", "from 275K ratings on the US App Store"], ["325", "versions of your live Meta ads, sorted by promise"], ["3", "versions of your onboarding, one per ad"], ["1", "paywall every install meets today"]]}, "walk": {}, "heroWalk": "▶ Watch it play in the phones"}</script>
 </body>
 </html>
